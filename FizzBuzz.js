@@ -60,3 +60,21 @@ var fizzBuzz = function(n) {
     return strArr;
 
 };
+
+//this is a shorter solution another user shared that I wanted to keep for my notes:
+
+let strArr = [];
+
+for (let i = 1; i <= n; i++) {
+    if (i % 15 === 0) {
+        strArr.push("FizzBuzz")
+    } else if (i % 3 === 0) {
+        strArr.push("Fizz")
+    } else if (i % 5 === 0) {
+        strArr.push("Buzz")
+    } else {
+        strArr.push(String(i));
+    }
+}
+
+return strArr;
