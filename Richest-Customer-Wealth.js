@@ -49,3 +49,23 @@ const maximumWealth = (accounts) => {
     const addedNumbers = accounts.map(addNumbersInArray);
     return Math.max(...addedNumbers);
 };
+
+//ALTERNATIVE SOLUTION:
+
+/**
+ * @param {number[][]} accounts
+ * @return {number}
+ */
+
+function sumArrays(accounts) {
+    return accounts.map(account => {
+        let total = 0;
+        account.forEach(val => total += val);
+        return total;
+    });
+}
+
+function maximumWealth(accounts) {
+  let totals = sumArrays(accounts);
+  return Math.max(...totals);
+}
