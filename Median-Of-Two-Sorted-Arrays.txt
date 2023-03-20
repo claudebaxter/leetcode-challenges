@@ -50,7 +50,7 @@ var findMedianSortedArrays = function(nums1, nums2) {
     if (mergedArr.length % 2 === 0) {
         return (mergedArr[len/2 - 1] + mergedArr[len/2])/2;
     } else {
-	/* if merged array length is odd, then mergedArr[Math.floor(len/2) = index of median of array.
+	/* if merged array length is odd, then mergedArr[Math.floor(len/2) = index of median of array.*/
         return mergedArr[Math.floor(len/2)];
     }
 };
