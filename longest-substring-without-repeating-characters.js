@@ -14,11 +14,10 @@ var lengthOfLongestSubstring = function(s) {
         } 
         else 
         {
-            if (output.length > subLength) {
-                subLength = output.length;
-            }
-            output = "";
+            let index = output.lastIndexOf(input[i]);
+            output = output.substring(index + 1) + input[i];
         }
+        subLength = Math.max(subLength, output.length);
     }
-    return subLength > output.length ? subLength : output.length;
+    return subLength;
 };
