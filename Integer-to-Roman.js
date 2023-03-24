@@ -66,7 +66,9 @@ var intToRoman = function(num) {
     console.log(numString);
 
     for (i = 0; i < numString.length; i++) {
-        
+        const digit = numString[i];
+        const place = 10 ** (numString.length - i - 1);
+        const value = digit * place;
     }
 
     return translation;
