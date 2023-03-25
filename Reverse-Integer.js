@@ -39,11 +39,12 @@ var reverse = function(x) {
     if (isNegative) {
         output = "-" + output;
     } 
-    console.log("output", output);
-    console.log(typeof output);
 
     if (output.charAt(0) === "0") {
-        console.log("starts with 0");
+        output = output.substring(1);
+        console.log("output2", output);
     }
+
+    return output;
     
 };
