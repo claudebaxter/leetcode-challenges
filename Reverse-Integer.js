@@ -36,5 +36,10 @@ var reverse = function(x) {
     const output = input.split("").reverse().join("");
     console.log("output", output); //output 321
     console.log(typeof output); //string
+
+    if (output.charAt(0) === "0") {
+	//checks if output string starts at 0
+        console.log("starts with 0"); 
+    }
     
 };
