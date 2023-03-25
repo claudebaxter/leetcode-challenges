@@ -33,5 +33,8 @@ Constraints:
  */
 var reverse = function(x) {
     const input = x.toString();
+    const output = input.split("").reverse().join("");
+    console.log("output", output); //output 321
+    console.log(typeof output); //string
     
 };
