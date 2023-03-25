@@ -45,6 +45,15 @@ var reverse = function(x) {
         console.log("output2", output);
     }
 
+<<<<<<< HEAD
+    const lowerRange = -2147483648;
+    const upperRange = 2147483647;
+    if (output < lowerRange || output > upperRange) {
+        output = 0;
+    }
+
+=======
+>>>>>>> master
     return output;
     
 };
