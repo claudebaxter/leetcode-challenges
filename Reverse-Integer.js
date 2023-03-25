@@ -32,14 +32,18 @@ Constraints:
  * @return {number}
  */
 var reverse = function(x) {
-    const input = x.toString();
-    const output = input.split("").reverse().join("");
-    console.log("output", output); //output 321
-    console.log(typeof output); //string
+    const isNegative = x < 0
+    const input = Math.abs(x).toString();
+    let output = input.split("").reverse().join("");
+
+    if (isNegative) {
+        output = "-" + output;
+    } 
+    console.log("output", output);
+    console.log(typeof output);
 
     if (output.charAt(0) === "0") {
-	//checks if output string starts at 0
-        console.log("starts with 0"); 
+        console.log("starts with 0");
     }
     
 };
