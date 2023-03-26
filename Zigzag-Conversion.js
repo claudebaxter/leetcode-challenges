@@ -55,7 +55,8 @@ let row = 0;
 let direction = 1;
 
 for (let i = 0; i < s.length; i==) {
-
+	matrix[row] += s[i];
+	
 }
 
 };
