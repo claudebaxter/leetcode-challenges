@@ -51,5 +51,11 @@ var convert = function(s, numRows) {
 const matrix = new Array(numRows);
 matrix.fill("");
 
+let row = 0;
+let direction = 1;
+
+for (let i = 0; i < s.length; i==) {
+
+}
 
 };
