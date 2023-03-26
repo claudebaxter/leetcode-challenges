@@ -46,5 +46,6 @@ s consists of English letters (lower-case and upper-case), ',' and '.'.
  * @return {string}
  */
 var convert = function(s, numRows) {
-    
+    if (numRows === 1) return s;
+
 };
