@@ -48,4 +48,8 @@ s consists of English letters (lower-case and upper-case), ',' and '.'.
 var convert = function(s, numRows) {
     if (numRows === 1) return s;
 
+const matrix = new Array(numRows);
+matrix.fill("");
+
+
 };
