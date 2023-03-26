@@ -57,6 +57,13 @@ let direction = 1;
 for (let i = 0; i < s.length; i==) {
 	matrix[row] += s[i];
 	
+	if (row === 0) {
+        	direction = 1;
+        } else if (row === numRows - 1) {
+       		direction = -1;
+        }
+    
+        row += direction;
 }
 
 };
