@@ -66,4 +66,12 @@ for (let i = 0; i < s.length; i==) {
         row += direction;
 }
 
+let result = "";
+  
+for (let i = 0; i < matrix.length; i++) {
+    result += matrix[i];
+}
+  
+return result;
+
 };
