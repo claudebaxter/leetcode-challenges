@@ -50,11 +50,21 @@ var threeSum = function(nums) {
 			console.log('i, k, j', i, k, j);
 			if (input[i] + input[j] + input[k] === 0) {
 				output.push([input[i], input[j], input[k]]);
+				k++;
+				while (input[k] === input[k-1]) k++; //to avoid duplicates
 			}
-		k++;
+			else if (input[i] + input[j] + input[k] < 0)
+			{
+				k++;
+			}
+			else
+			{
+				j--;
+			}
 		}
-	i++;
-	j--;
+		i++;
+		j = input.length - 1;
+		while (input[i] === input[i-1]) i++ //to avoid duplicates
 	}
 	return output;
 };
