@@ -72,5 +72,6 @@ s consists of English letters (lower-case and upper-case), digits (0-9), ' ', '+
  * @return {number}
  */
 var myAtoi = function(s) {
-
+    var output = Number(s);
+    return output;
 };
