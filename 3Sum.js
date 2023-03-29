@@ -40,7 +40,15 @@ Constraints:
  * @return {number[][]}
  */
 var threeSum = function(nums) {
-	let input = nums.sort(function(a, b){return a - b});
-	console.log('input', input);
-    
+    let input = nums.sort(function(a, b){return a - b});
+    console.log(input);
+	let output = [];
+	let i = 0;
+	let j = input.length - 1;
+	while (i < j) {
+		i++
+		j--
+        console.log(i, j);
+	}
+    return output;
 };
