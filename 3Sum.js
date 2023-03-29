@@ -40,15 +40,21 @@ Constraints:
  * @return {number[][]}
  */
 var threeSum = function(nums) {
-    let input = nums.sort(function(a, b){return a - b});
-    console.log(input);
+    	let input = nums.sort(function(a, b){return a - b});
 	let output = [];
 	let i = 0;
 	let j = input.length - 1;
 	while (i < j) {
-		i++
-		j--
-        console.log(i, j);
+		let k = i + 1;
+		while (k < j) {
+			console.log('i, k, j', i, k, j);
+			if (input[i] + input[j] + input[k] === 0) {
+				output.push([input[i], input[j], input[k]]);
+			}
+		k++;
+		}
+	i++;
+	j--;
 	}
-    return output;
+	return output;
 };
