@@ -72,6 +72,26 @@ s consists of English letters (lower-case and upper-case), digits (0-9), ' ', '+
  * @return {number}
  */
 var myAtoi = function(s) {
-    var output = Number(s);
-    return output;
+//match integer part of string optionally preceded by a - or +
+    let match = s.match(/^ *([+-]?\d+)/);
+
+//if match is found, remove non digit characters and convert to a number
+    if (match) {
+	let numStr = match[1].replace(/\D/g, '');
+    	let output = Number(numStr);
+//if the original input had a leading -, negate the output	
+	if (match[1][0] === '-') {
+		output = -output;
+	}
+//check if the output is within the range of a 32 bit signed integer
+	if (output < -2147483648) {
+		return -2147483648;
+	} else if (output > 2147483647) {
+		return 2147483647;
+	} else {
+		return output;
+	}
+    }
+//if no match is found, return 0
+    return 0;
 };
