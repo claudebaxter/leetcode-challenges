@@ -30,6 +30,10 @@ digits[i] is a digit in the range ['2', '9'].
  * @return {string[]}
  */
 var letterCombinations = function(digits) {
+  if (digits === "") {
+    return [];
+  }
+  
   const dic = {
     "2": ['a', 'b', 'c'],
     "3": ['d', 'e', 'f'],
@@ -56,3 +60,4 @@ var letterCombinations = function(digits) {
   
   return output;
 };
+
