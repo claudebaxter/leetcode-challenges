@@ -1,3 +1,18 @@
+//Check if a string (first argument, str) ends with the given target string (second argument, target).
+
+function confirmEnding(str, target) {
+  let targetLength = target.length;
+  let strEnd = str.substring(str.length - targetLength)
+  if (strEnd === target) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+confirmEnding("Bastian", "n");
+
+
 //return larges number in array
 function largestOfFour(arr) {
   let output = [];
