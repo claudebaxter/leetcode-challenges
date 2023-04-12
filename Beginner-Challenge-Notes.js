@@ -1,3 +1,16 @@
+//Repeat a String str (1st arg) for num times (2nd arg), return empty string if num is not a positive number
+
+function repeatStringNumTimes(str, num) {
+  let result = "";
+  for (let i = 0; i < num; i++) {
+    result += str;
+  }
+  return result;
+}
+
+console.log(repeatStringNumTimes("abc", 3));
+
+
 //Check if a string (first argument, str) ends with the given target string (second argument, target).
 
 function confirmEnding(str, target) {
