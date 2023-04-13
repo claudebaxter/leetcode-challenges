@@ -14,6 +14,12 @@ function findElement(arr, func) {
 
 console.log(findElement([1, 3, 5, 8, 9, 10], function(num) { return num % 2 === 0; })); //returns 8
 
+//this is another simple solution for the above function:
+
+function findElement(arr, func) {
+  return arr.find(func);
+}
+
 
 //Truncate a String
 //Truncate a string (first argument) if it is longer than the given maximum string length (second argument). Return the truncated string with a ... ending.
