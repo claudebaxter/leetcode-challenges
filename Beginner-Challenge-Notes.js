@@ -1,3 +1,55 @@
+/*Falsy Bouncer
+Remove all falsy values from an array. Return a new array; do not mutate the original array.
+Falsy values in JavaScript are false, null, 0, "", undefined, and NaN.
+Hint: Try converting each value to a Boolean.*/
+
+function bouncer(arr) {
+  let output = [];
+  for (let i = arr.length - 1; i >= 0; i--) {
+    if (arr[i]) {
+      output.push(arr[i]);      
+    }
+  }
+  return output.reverse();
+}
+
+//ANOTHER EXAMPLE
+
+function bouncer(arr) {
+  return arr.filter(Boolean);
+}
+
+console.log(bouncer([7, "ate", "", false, 9])); //returns [7, "ate", 9]
+
+
+/*Slice and Splice
+You are given two arrays and an index.
+Copy each element of the first array into the second array, in order.
+Begin inserting elements at index n of the second array.
+Return the resulting array. The input arrays should remain the same after the function runs.*/
+
+function frankenSplice(arr1, arr2, n) {
+  let newArray = arr2.slice();
+  newArray.splice(n, 0, ...arr1);
+  return newArray;
+}
+
+console.log(frankenSplice([1, 2, 3], [4, 5, 6], 1));
+
+//ANOTHER EXAMPLE:
+
+function frankenSplice(arr1, arr2, n) {
+  // It's alive. It's alive!
+  let localArray = arr2.slice();
+  for (let i = 0; i < arr1.length; i++) {
+    localArray.splice(n, 0, arr1[i]);
+    n++;
+  }
+  return localArray;
+}
+
+
+
 //Title Case a Sentence
 //Return the provided string with the first letter of each word capitalized. Make sure the rest of the word is in lower case.
 //For the purpose of this exercise, you should also capitalize connecting words like the and of.
