@@ -1,3 +1,19 @@
+/*Chunky Monkey
+Write a function that splits an array (first argument) into groups the length of size (second argument) and returns them as a two-dimensional array.*/
+
+function chunkArrayInGroups(arr, size) {
+  let index = 0;
+  let chunkArr = [];
+  while (index < arr.length) {
+    chunkArr.push(arr.slice(index, index + size));
+    index += size;
+  }
+  return chunkArr;
+}
+
+console.log(chunkArrayInGroups(["a", "b", "c", "d"], 2)); // returns [ [ 'a', 'b' ], [ 'c', 'd' ] ]
+
+
 /*Mutations
 Return true if the string in the first element of the array contains all of the letters of the string in the second element of the array.
 For example, ["hello", "Hello"], should return true because all of the letters in the second string are present in the first, ignoring case.
