@@ -8,7 +8,16 @@ Rewrite the function nonMutatingSplice by using slice instead of splice. It shou
 Do not mutate the original array provided to the function.*/
 
 
+function nonMutatingSplice(cities) {
+  // Only change code below this line
+  
+  return cities.slice(0, 3);
 
+  // Only change code above this line
+}
+
+const inputCities = ["Chicago", "Delhi", "Islamabad", "London", "Berlin"];
+console.log(nonMutatingSplice(inputCities));
 
 
 /*Return Part of an Array Using the slice Method
