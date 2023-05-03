@@ -1,3 +1,33 @@
+/*Implement the filter Method on a Prototype
+You might learn a lot about the filter method if you implement your own version of it. It is recommended you use a for loop or Array.prototype.forEach().
+Write your own Array.prototype.myFilter(), which should behave exactly like Array.prototype.filter(). You should not use the built-in filter method. The Array instance can be accessed in the myFilter method using this.*/
+
+Array.prototype.myFilter = function(callback) {
+  const newArray = [];
+  // Only change code below this line
+  for (let i = 0; i < this.length; i++) {
+    if (callback(this[i], i, this)) newArray.push(this[i])
+  }
+  // Only change code above this line
+  return newArray;
+};
+
+console.log([1, 1, 2, 5, 2].myFilter((element, index, array) => array.indexOf(element) === index));
+
+//alt solution:
+Array.prototype.myFilter = function (callback) {
+  const newArray = [];
+  // Only change code below this line
+  for (let i = 0; i < this.length; i++) {
+    if (callback(this[i], i, this) == true) {
+      newArray.push(this[i]);
+    }
+  }
+  // Only change code above this line
+  return newArray;
+};
+
+
 /*Use the filter Method to Extract Data from an Array
 Another useful array function is Array.prototype.filter(), or simply filter().
 filter calls a function on each element of an array and returns a new array containing only the elements for which that function returns a truthy value - that is, a value which returns true if passed to the Boolean() constructor. In other words, it filters the array, based on the function passed to it. Like map, it does this without needing to modify the original array.
