@@ -98,6 +98,7 @@ Diagram 3: root = [1, null, 2, 3]
         output: [1,3,2]
 
 Pseudocode:
+(recursive)
     init output = [];
     function recursiveHelp(node) 
         base case:
@@ -110,6 +111,22 @@ Pseudocode:
         output.push(node)
     return output;
 
+(Iterative Solution)
+    inorderTraversal(root)
+        output = []
+        stack = []
+        current = root
+
+        while currentNode || stack.length > 0 are truthy
+            while current = true
+                stack.push(current)
+                current = current.left
+          
+            currentNode = stack.pop()
+            output.push(current.val)
+            current = current.right
+
+        return output
   */
 
 //recursive solution:
@@ -129,3 +146,23 @@ var inorderTraversal = function(root) {
     return output;
 };
 
+/iterative solution:
+
+var inorderTraversal = function(root) {
+    let output = [];
+    let stack = [];
+    let current = root;
+
+    while (current || stack.length > 0) {
+        while (current) {
+            stack.push(current);
+            current = current.left;
+        }
+
+        current = stack.pop();
+        output.push(current.val);
+        current = current.right;
+    }
+
+    return output;
+};
