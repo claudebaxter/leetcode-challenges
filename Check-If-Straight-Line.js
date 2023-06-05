@@ -74,3 +74,25 @@ var checkStraightLine = function(coordinates) {
 
   return true;
 };
+
+//alternative solution:
+
+/**
+ * @param {number[][]} coordinates
+ * @return {boolean}
+ */
+ //  get difference between first 2 pair of coords - dy and dx => y1- y0 and x1 - x0
+ // loop through arr and use dy, dx * y1 - y1, x1 - x0 .. minus operation again . dx and dy must be equal else false
+//  let log = console.log.bind(console)
+var checkStraightLine = function(coordinates) {
+  if(coordinates.length === 2) return true;
+    // line defined by first 2 points
+    const dx =   coordinates[1][0] - coordinates[0][0];
+    const dy =  coordinates[1][1] - coordinates[0][1];
+
+    for(let i = 2; i < coordinates.length; i++) {
+      const x = coordinates[i][0], y = coordinates[i][1];
+      if(dx * (y - coordinates[1][1]) !=  dy * (x -  coordinates[1][0])) return false;
+    }
+    return true;
+};
