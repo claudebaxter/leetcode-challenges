@@ -31,6 +31,20 @@ The number of nodes in the tree is in the range [2, 104].
 - - Recursively call traverse on the right subtree of the current node.
 - Call the traverse function on the root node to start the traversal.
 - Return the final minDiff value.
+
+iterative logic:
+- Initialize minDiff variable with Infinity to track the minimum difference.
+- Initialize prevVal variable with null to store the previous node's value.
+- Initialize an empty stack stack to keep track of the nodes to be visited.
+- Set curr to the root of the BST.
+- Enter a while loop that continues until curr is null and the stack is empty.
+- Inside the while loop, enter another while loop to traverse to the leftmost node of the current subtree. Push each node encountered onto the stack.
+- Once the leftmost node is reached (when curr is null), pop the top node from the stack and assign it to curr.
+- Check if prevVal is not null. If so, calculate the difference between the current node's value (curr.val) and the previous node's value (prevVal), and update minDiff if the calculated difference is smaller.
+- Update prevVal with the current node's value.
+- Move to the right subtree by assigning curr as curr.right.
+- Repeat steps 5-10 until all nodes are traversed.
+- Return the final value of minDiff, which represents the minimum absolute difference between any two different node values in the BST.
  */
 /**
  * Definition for a binary tree node.
@@ -66,6 +80,33 @@ var getMinimumDifference = function(root) {
     };
 
     traverse(root);
+
+    return minDiff;
+};
+
+//iterative solution:
+var getMinimumDifference = function(root) {
+    let minDiff = Infinity;
+    let prevVal = null;
+
+    let stack = [];
+    let curr = root;
+
+    while (curr !== null || stack.length > 0) {
+        while (curr !== null) {
+            stack.push(curr);
+            curr = curr.left;
+        }
+
+        curr = stack.pop();
+
+        if (prevVal !== null) {
+            minDiff = Math.min(minDiff, curr.val - prevVal);
+        }
+        prevVal = curr.val;
+
+        curr = curr.right
+    }
 
     return minDiff;
 };
