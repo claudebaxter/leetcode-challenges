@@ -25,47 +25,42 @@ Example 3:
 
 Input: accounts = [[2,8,7],[7,1,3],[1,9,5]]
 Output: 17
-
+ 
 Constraints:
 
 m == accounts.length
 n == accounts[i].length
 1 <= m, n <= 50
 1 <= accounts[i][j] <= 100
+*/
 
-SOLUTION:
+/*
+logic: 
+- init empty balances array to store total balances
+- traverse accounts from start to finish
+- - init currentBalance counter set to 0
+- - traverse each subarray in accounts start to finish
+- - - inner loop increments currentBalance to sum total balance
+- - push total balance to balances array
+- sort balances array from lowest to highest
+- return the last (highest) value from balances array
 */
 
 /**
  * @param {number[][]} accounts
  * @return {number}
  */
+var maximumWealth = function(accounts) {
+    let balances = [];
 
-const addNumbersInArray = (arr) => {
-    return arr.reduce((acc, value) => acc + value);
-}
-
-const maximumWealth = (accounts) => {
-    const addedNumbers = accounts.map(addNumbersInArray);
-    return Math.max(...addedNumbers);
+    for (let i = 0; i < accounts.length; i++) {
+        let currentBalance = 0;
+        for (let j = 0; j < accounts[i].length; j++) {
+            currentBalance += accounts[i][j]
+        }
+        balances.push(currentBalance);
+    }
+    
+    balances.sort((a, b) => a - b);
+    return balances[balances.length - 1];
 };
-
-//ALTERNATIVE SOLUTION:
-
-/**
- * @param {number[][]} accounts
- * @return {number}
- */
-
-function sumArrays(accounts) {
-    return accounts.map(account => {
-        let total = 0;
-        account.forEach(val => total += val);
-        return total;
-    });
-}
-
-function maximumWealth(accounts) {
-  let totals = sumArrays(accounts);
-  return Math.max(...totals);
-}
