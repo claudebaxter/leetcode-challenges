@@ -81,3 +81,75 @@ var removeDuplicates = function(nums) {
      return k;
     
 };
+
+/*
+logic:
+- Initialize a counter k starting at 0.
+- Traverse the nums array from end to beginning.
+- - Check if the current value matches the next value in the iteration (nums[i] === nums[i - 1]).
+- - - If they match, remove the current value (nums[i]) from nums using the .splice(i, 1) method and increment the k counter by 1.
+- Return nums and k.
+*/
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var removeDuplicates = function(nums) {
+    let k = 0;
+    
+    for (let i = nums.length - 1; i >= 0; i--) {
+        if (nums[i] === nums[i - 1]) {
+            nums.splice(i, 1);
+            k++
+        }
+    }
+    
+    console.log(nums, k);
+};
+
+//Solution without built in methods:
+
+/*
+logic:
+- initialize k counter at 0
+- traverse array nums with i starting at index 1
+- - check if current value DOES NOT equal the previous value
+- - - if check is true, increment k + 1, and set nums[k] to equal nums[i] (manual shifting window)
+- after loop ends, remove all values from array after nums[k] (set nums.length to k + 1)
+- return nums & k
+
+diagram:
+k = 0
+i = 1
+
+	            k
+                                   i
+        0  1  2  3  4  5  6  7  8  9
+nums = [0, 1, 2, 3, 4, 2, 2, 3, 3, 4]
+
+when nums.length = k + 1 (or 5) then:
+        1  2  3  4  5
+nums = [0, 1, 2, 3, 4] 
+
+expected output: [0, 1, 2, 3, 4], 5
+*/
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var removeDuplicates = function(nums) {
+    let k = 0;
+
+    for (let i = 1; i < nums.length; i++) {
+        if (nums[i] !== nums[i - 1]) {
+            k++;
+            nums[k] = nums[i];
+        }
+    }
+
+    nums.length = k + 1;
+
+    console.log(nums, k + 1);
+};
