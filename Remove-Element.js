@@ -1,4 +1,4 @@
-/
+/*
 27. Remove Element
 Given an integer array nums and an integer val, remove all occurrences of val in nums in-place. The order of the elements may be changed. Then return the number of elements in nums which are not equal to val.
 
@@ -43,14 +43,7 @@ Constraints:
 0 <= nums.length <= 100
 0 <= nums[i] <= 50
 0 <= val <= 100
-
-
-
-**
- * @param {number[]} nums
- * @param {number} val
- * @return {number}
- */
+*/
 
  /**
  logic:
@@ -58,7 +51,7 @@ Constraints:
  iterate backward through nums from end to start
     if nums[i] === val
         remove nums[i] from nums (in place)
-        incement k +1
+        increment k +1
  return # of values left in modified nums array (k)
  return modified nums array
 
@@ -67,6 +60,14 @@ Constraints:
 
  time/space complexity are both O(n) / linear
   */
+
+
+**
+ * @param {number[]} nums
+ * @param {number} val
+ * @return {number}
+ */
+
 var removeElement = function(nums, val) {
     let k = 0;
 
