@@ -80,3 +80,36 @@ var removeElement = function(nums, val) {
 
     console.log(k, nums);
 };
+
+
+/*
+alt solution with no built in method
+2 pointer approach
+logic:
+- init k pointer at 0
+- traverse nums start to end
+- - if nums[i] does not equal val, overwrite the value and index k with the current non-val element & increment k + 1
+- return k
+
+time complexity: O(n) n = nums.length
+space complexity: O(1)
+
+*/
+
+/**
+ * @param {number[]} nums
+ * @param {number} val
+ * @return {number}
+ */
+var removeElement = function(nums, val) {
+  let k = 0; 
+
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] !== val) {
+      nums[k] = nums[i]; 
+      k++;
+    }
+  }
+
+  return k; 
+};
