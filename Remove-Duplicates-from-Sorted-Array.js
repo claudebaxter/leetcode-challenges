@@ -41,12 +41,9 @@ Constraints:
 nums is sorted in non-decreasing order.
 */
 
-/**
- * @param {number[]} nums
- * @return {number}
- */
-var removeDuplicates = function(nums) {
+
     /**
+    (not in place)
     logic:
     initialize k counter variable to return 
     let k = 0 (counter variable to return # of unique values)
@@ -64,6 +61,11 @@ var removeDuplicates = function(nums) {
     return k;
      */
 
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var removeDuplicates = function(nums) {
      let k = 0;
      let uniqueValues = [];
 
@@ -108,7 +110,7 @@ var removeDuplicates = function(nums) {
     console.log(nums, k);
 };
 
-//Solution without built in methods:
+//In-Place Solution without built in methods:
 
 /*
 logic:
