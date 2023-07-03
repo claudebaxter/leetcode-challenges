@@ -45,6 +45,9 @@ logic:
 - - compare heights[i] to sortedArray[i];
 - - - for each height that is different, increment k++
 - return k
+
+time complexity: O(n log n) n = heights.length / logarithmic
+space complexity: O(1) / constant
 */
 
 /**
@@ -63,7 +66,11 @@ var heightChecker = function(heights) {
     return k;
 };
 
-//using bubbleSort instead of .sorth method
+/*
+using bubbleSort instead of .sort method
+time complexity: O(n^2) n = heights.length / quadratic
+space complexity: O(1) / constant
+
 
 /**
  * @param {number[]} heights
@@ -89,3 +96,114 @@ var heightChecker = function(heights) {
     
     return k;
 };
+
+
+/*
+solution using mergeSort implementation with no built in methods
+heightChecker(heights) logic:
+- init sortedArray which calls recursive fn mergeSort with input of (arr, start, end) (in this case, [...heights], 0, heights.length - 1)
+- init k counter set to 0
+- traverse heights start to end
+- - compare heights[i] to sortedArray[i];
+- - - for each height that is different, increment k + 1
+- return k
+
+mergeSort(arr, start, end) logic:
+- if start is >= end, return arr[start] (base case)
+- init mid value = lowest value of (start + 2nd) / 2 (use Math.floor)
+- init left arr by calling mergeSort recursively with input (arr, start, mid)
+- init right arr by calling mergeSort recursively with input (arr, mid + 1, end) 
+- return fn call merge(left, right)
+
+merge(left, right) logic:
+- init empty merged array
+- init i & j pointers starting at 0
+- while i & j haven't reached the end of left or right arrays:
+- - if left[i] is less or equal to right[j], push left[i] to merged and increment i + 1, otherwise push  right[j] to merged and increment j + 1
+- while i < left.length, and j has reached the end of right.length:
+- - push left[i] to merged and increment i + 1
+- while j < right.length, and i has reached the end of left.length:
+- - push right[j] to merged and increment j + 1
+- return merged / sorted array
+
+
+diagram:
+input heights = [1, 1, 4, 2, 1, 3]
+
+mid/left/right 0 [ 1 ] [ 1 ]
+merged/i/j [ 1, 1 ] 1 1
+
+mid/left/right 1 [ 1, 1 ] [ 4 ]
+merged/i/j [ 1, 1, 4 ] 2 1
+
+mid/left/right 3 [ 2 ] [ 1 ]
+merged/i/j [ 1, 2 ] 1 1
+
+mid/left/right 4 [ 1, 2 ] [ 3 ]
+merged/i/j [ 1, 2, 3 ] 2 1
+
+mid/left/right 2 [ 1, 1, 4 ] [ 1, 2, 3 ]
+merged/i/j [ 1, 1, 1, 2, 3, 4 ] 3 3
+
+time complexity: O(n log n) n = heights.length / logarithmic
+space complexity: O(1) / constant
+*/
+
+/**
+ * @param {number[]} heights
+ * @return {number}
+ */
+var heightChecker = function(heights) {
+    let k = 0;
+    let sortedArr = mergeSort([...heights], 0, heights.length - 1);
+    
+    for (let i = 0; i < heights.length; i++) {
+        if (heights[i] !== sortedArr[i]) k++;
+    }
+    
+    return k;
+};
+
+function mergeSort(arr, start, end) {
+    if (start >= end) {
+        return [arr[start]];
+    }
+    
+    const mid = Math.floor((start + end) / 2);
+    const left = mergeSort(arr, start, mid);
+    const right = mergeSort(arr, mid + 1, end);
+    
+    console.log("mid/left/right", mid, left, right);
+    
+    return merge(left, right);
+};
+
+function merge(left, right) {
+    let merged = [];
+    let i = 0;
+    let j = 0;
+    
+    while (i < left.length && j < right.length) {
+        if (left[i] <= right[j]) {
+            merged.push(left[i]);
+            i++;
+        } else {
+            merged.push(right[j]);
+            j++
+        }
+    }
+    
+    while (i < left.length) {
+        merged.push(left[i]);
+        i++;
+    }
+    
+    while (j < right.length) {
+        merged.push(right[j]);
+        j++;
+    }
+    
+    console.log("merged/i/j", merged, i, j)
+    
+    return merged;
+}
