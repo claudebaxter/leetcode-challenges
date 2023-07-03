@@ -38,7 +38,7 @@ Constraints:
 */
 
 /*
-logic (using .sort method):
+logic:
 - init sortedArray = heights.sort((a, b) => a - b))
 - init k counter set to 0
 - traverse heights start to end
@@ -55,6 +55,33 @@ var heightChecker = function(heights) {
     let k = 0;
     let sortedArr = [...heights];
     sortedArr.sort((a, b) => a - b);
+    
+    for (let i = 0; i < heights.length; i++) {
+        if (heights[i] !== sortedArr[i]) k++;
+    }
+    
+    return k;
+};
+
+//using bubbleSort instead of .sorth method
+
+/**
+ * @param {number[]} heights
+ * @return {number}
+ */
+var heightChecker = function(heights) {
+    let k = 0;
+    let sortedArr = [...heights];
+    
+    for (let i = 0; i < sortedArr.length - 1; i++) {
+        for (let j = 0; j < sortedArr.length - i - 1; j++) {
+            if (sortedArr[j] > sortedArr[j + 1]) {
+                const temp = sortedArr[j];
+                sortedArr[j] = sortedArr[j + 1];
+                sortedArr[j + 1] = temp;
+            }
+        }
+    }
     
     for (let i = 0; i < heights.length; i++) {
         if (heights[i] !== sortedArr[i]) k++;
