@@ -48,7 +48,7 @@ var sortedSquares = function(nums) {
     return squaredNums;
 };
 
-//O(n) approach that doesn't utilize trivial sort method:
+//O(n) approach that doesn't utilize sort method:
 
 /**
  * @param {number[]} nums
@@ -76,4 +76,20 @@ var sortedSquares = function(nums) {
     }
     
     return squaredNums;
+};
+
+//O(n) approach that changes nums array in place:
+
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var sortedSquares = function(nums) {
+    for (let i = 0; i < nums.length; i++) {
+        nums[i] = nums[i] * nums[i];
+    }
+    
+    nums.sort((a, b) => a - b);
+    
+    return nums;
 };
