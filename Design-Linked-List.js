@@ -206,3 +206,96 @@ function Node(val) {
  * obj.addAtIndex(index,val)
  * obj.deleteAtIndex(index)
  */
+
+//modern syntax:
+
+class MyLinkedList {
+    constructor() {
+        this.head = null;
+        this.length = 0;
+    }
+
+    get(index) {
+        if (index < 0 || index >= this.length) return -1;
+        
+        let current = this.head;
+        for (let i = 0; i < index; i++) {
+            current = current.next;
+        }
+        
+        return current.val;
+    };
+
+    addAtHead(val) {
+        const newNode = new Node(val);
+        newNode.next = this.head
+        this.head = newNode
+        this.length++
+    }
+
+    addAtTail(val) {
+        const newNode = new Node (val);
+        if (this.head === null) {
+            this.head = newNode;
+        } else {
+            let current = this.head;
+            while (current.next) {
+                current = current.next;
+            }
+            current.next = newNode;
+        }
+        this.length++;
+    }
+
+    addAtIndex(index, val) {
+        if (index < 0 || index > this.length) return;
+        
+        if (index === 0) {
+            this.addAtHead(val);
+        } else if (index === this.length) {
+            this.addAtTail(val);
+        } else {
+            const newNode = new Node (val);
+            let current = this.head;
+            for (let i = 0; i < index - 1; i++) {
+                current = current.next;
+            }
+            newNode.next = current.next;
+            current.next = newNode;
+            this.length++;
+        }
+    };
+
+    deleteAtIndex(index) {
+        if (index < 0 || index >= this.length) return;
+        
+        if (index === 0) {
+            this.head = this.head.next;
+        } else {
+            let current = this.head;
+            for (let i = 0; i < index - 1; i++) {
+                current = current.next;
+            }
+            current.next = current.next.next;
+        }
+        
+        this.length--;
+    }
+}
+
+class Node {
+    constructor(val) {
+        this.val = val;
+        this.next = null;
+    }
+}
+
+/** 
+ * Your MyLinkedList object will be instantiated and called as such:
+ * var obj = new MyLinkedList()
+ * var param_1 = obj.get(index)
+ * obj.addAtHead(val)
+ * obj.addAtTail(val)
+ * obj.addAtIndex(index,val)
+ * obj.deleteAtIndex(index)
+ */
