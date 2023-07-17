@@ -1,0 +1,92 @@
+The doubly linked list works in a similar way but has one more reference field which is known as the "prev" field. With this extra field, you are able to know the previous node of the current node.
+
+Let's take a look at an example:
+
+X <- 23 -> <- 6 -> <- 15 -> X
+
+The <- represents how our "prev" field works and the -> is how our "next" field works.
+
+We can access data in the same exact way as in a singly linked list:
+
+1. We are not able to access a random position in constant time.
+2. We have to traverse from the head to get the i-th node we want.
+3. The time complexity in the worse case will be O(N), where N is the length of the linked list.
+
+// C++ Definition for doubly-linked list.
+struct DoublyListNode {
+    int val;
+    DoublyListNode *next, *prev;
+    DoublyListNode(int x) : val(x), next(NULL), prev(NULL) {}
+};
+
+
+
+// Java Definition for doubly-linked list.
+class DoublyListNode {
+    int val;
+    DoublyListNode next, prev;
+    DoublyListNode(int x) {val = x;}
+}
+
+//JavaScript Definition for doubly-linked list.
+class DoublyListNode {
+  constructor(val) {
+    this.val = val;
+    this.next = null;
+    this.prev = null;
+  }
+}
+
+
+//alternative JavaScript Definition:
+const DoublyListNode = {
+  create(val) {
+    return {
+      val: val,
+      next: null,
+      prev: null,
+    };
+  },
+};
+
+
+Add Operation - Doubly Linked List
+Insert a new node cur after an existing node prev in two steps:
+
+1. link cur with prev and next, where next is the original next node of prev
+example:
+
+     X <- ... -> <- prev -> <- next -> <- ... -> X
+                         ^cur^
+
+2. re-link the prev and next with cur
+
+     X <- ... -> <- prev -> <- cur -> <- next -> <- ... -> X
+                         
+Example:
+
+     X <- 23 -> <- 6 -> <- 15 -> X
+
+Let's add a new node 9 after the existing node 6:
+
+     X <- 23 -> <- 6 -> <- 15 -> X
+                     ^ 9 ^
+
+re-link prev (node 6) and next (node 15) with cur (node 9)
+
+     X <- 23 -> <- 6 -> <- 9 -> <- 15 -> X
+
+Delete Operation - Doubly Linked List
+Remove node 6 from the doubly linked list.
+
+X <- 23 -> <- 6 -> <- 15 -> X
+
+Link previous node 23 and its next node 15:
+             _____
+            /     \/
+     X <- 23 <- 6 -> 15 -> X
+           /\_______/
+
+Now, node 6 is no longer in the linked list:
+
+     X <- 23 -> <- 15 -> X
