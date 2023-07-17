@@ -21,9 +21,67 @@ The number of nodes in the list is in the range [1, 105].
  
 
 Follow up: Could you do it in O(n) time and O(1) space?
-
-SOLUTION:
 */
+
+/*
+logic:
+- check if head or head.next is null, if so return true
+- init empty nodes array
+- init current pointer starting at head
+- while current is not null, traverse head start to end
+- - push each node value into the nodes array
+- - increment current forward one node at a time
+- init left and right pointers for beginning and end of nodes array
+- while left is less than right, traverse nodes array
+- - if nodes[left] is not equal to nodes[right] return false
+- - otherwise increment left +1 and decrement right -1
+- return true if loop runs all the way without returning false
+
+iterative approach
+Time complexity: O(n) / linear (n = # nodes in head)
+Space complexity: O(1) / linear (n = # items in nodes array)
+*/
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {boolean}
+ */
+var isPalindrome = function(head) {
+    if (head === null || head.next === null) {
+        return true;
+    }
+    
+    let nodes = [];
+    let current = head;
+    
+    while (current) {
+        nodes.push(current.val);
+        current = current.next;
+    }
+    
+    let left = 0;
+    let right = nodes.length - 1;
+    
+    while (left < right) {
+        if (nodes[left] !== nodes[right]) {
+            return false;
+        }
+        left++;
+        right--;
+    }
+    
+    return true;
+};
+
+
+//alternative solution:
 
 /**
  * Definition for singly-linked list.
