@@ -23,8 +23,27 @@ Constraints:
 The number of nodes in each linked list is in the range [1, 100].
 0 <= Node.val <= 9
 It is guaranteed that the list represents a number that does not have leading zeros.
+*/
 
-SOLUTION: */
+/*
+logic:
+- init newNode as new linked list with dummy node value of 0
+- init head and set it to newNode (will use to build resulting linked list)
+- init carry assigned to 0 (will track any carry over from addition of previous digits)
+- while 11 and 12 are not null, traverse each list until both are null
+- - on each iteration, obtain values a, b from corresponding nodes of l1 and l2
+- - init sum assigned to a + b + carry
+- - adjust carry to store the carry-over (Math.floor(sum / 10))
+- - append a new node to head.next with the value of sum modulo 10 to get the single digit
+- - move l1, l2 and head to their next nodes (if they exist)
+- after loop ends, if there is still a remaining carry (if carry > 0), append a new node with the value of carry to head.next
+- return newNode.next, which is the resulting linked list.
+
+Iterative approach traverses two linked lists and performs addition digit by digit. The result is stored in a new linked list.
+
+Time complexity: O(n) / linear (n = # nodes in both lists)
+Space complexity: O(1) / constant
+*/
 
 /**
  * Definition for singly-linked list.
