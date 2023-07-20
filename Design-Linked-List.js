@@ -299,3 +299,120 @@ class Node {
  * obj.addAtIndex(index,val)
  * obj.deleteAtIndex(index)
  */
+
+
+
+
+
+
+//doubly linked list design:
+
+class MyLinkedList {
+    constructor() {
+        this.head = null;
+        this.tail = null; // Added tail property to keep track of the last node
+        this.length = 0;
+    }
+
+    get(index) {
+        if (index < 0 || index >= this.length) return -1;
+
+        let current = this.getNode(index);
+        return current.val;
+    }
+
+    getNode(index) {
+        if (index < 0 || index >= this.length) return null;
+
+        let current = this.head;
+        for (let i = 0; i < index; i++) {
+            current = current.next;
+        }
+
+        return current;
+    }
+
+    addAtHead(val) {
+        const newNode = new Node(val);
+
+        if (this.length === 0) {
+            this.head = newNode;
+            this.tail = newNode;
+        } else {
+            newNode.next = this.head;
+            this.head.prev = newNode; // Added prev reference to the existing head node
+            this.head = newNode;
+        }
+
+        this.length++;
+    }
+
+    addAtTail(val) {
+        const newNode = new Node(val);
+
+        if (this.length === 0) {
+            this.head = newNode;
+            this.tail = newNode;
+        } else {
+            newNode.prev = this.tail; // Added prev reference to the existing tail node
+            this.tail.next = newNode; // Updated next reference of the existing tail node
+            this.tail = newNode;
+        }
+
+        this.length++;
+    }
+
+    addAtIndex(index, val) {
+        if (index < 0 || index > this.length) return;
+
+        if (index === 0) {
+            this.addAtHead(val);
+        } else if (index === this.length) {
+            this.addAtTail(val);
+        } else {
+            const newNode = new Node(val);
+            let prevNode = this.getNode(index - 1);
+            let nextNode = prevNode.next;
+
+            newNode.prev = prevNode; // Added prev reference to the new node
+            newNode.next = nextNode;
+            prevNode.next = newNode;
+            nextNode.prev = newNode; // Added prev reference to the next node
+
+            this.length++;
+        }
+    }
+
+    deleteAtIndex(index) {
+        if (index < 0 || index >= this.length) return;
+
+        if (index === 0) {
+            this.head = this.head.next;
+            if (this.head) {
+                this.head.prev = null;
+            } else {
+                this.tail = null;
+            }
+        } else if (index === this.length - 1) {
+            this.tail = this.tail.prev;
+            this.tail.next = null;
+        } else {
+            let nodeToDelete = this.getNode(index);
+            let prevNode = nodeToDelete.prev;
+            let nextNode = nodeToDelete.next;
+
+            prevNode.next = nextNode;
+            nextNode.prev = prevNode;
+        }
+
+        this.length--;
+    }
+}
+
+class Node {
+    constructor(val) {
+        this.val = val;
+        this.prev = null; // Added prev property to represent the reference to the previous node
+        this.next = null;
+    }
+}
