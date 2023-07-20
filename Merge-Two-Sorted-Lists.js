@@ -26,6 +26,23 @@ The number of nodes in both lists is in the range [0, 50].
 Both list1 and list2 are sorted in non-decreasing order.
 */
 
+/*
+logic:
+- init dummy node at -1 (new ListNode(-1);
+- init current pointer starting at the dummy node
+- while list1 & list2 are not null, traverse the lists and compare the values of the current nodes in list1 and list2
+- - if list1.val is less than list2.val, adjust current.next to list1, and increment list1 forward one node
+- - else, adjust current.next to list2, and adjust list2 forward one node
+- - increment current pointer forward one node
+- if there are remaining nodes in list1, increment current.next to list1
+- else increment current.next to list2
+- return dummy.next, which is the head of the merged linked list
+
+Single pointer approach
+Time complexity: O(n) / linear (n = # nodes in both lists)
+Space complexity: O(1) / constant
+*/
+
 /**
  * Definition for singly-linked list.
  * function ListNode(val, next) {
