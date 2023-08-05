@@ -74,3 +74,96 @@ Imperative approach, mutates matrix variable to produce output, may create side 
 
 Intuition behind the code is to iteratively fill the matrix by traversing the top, right, bottom, and left sides in a spiral order. The variables 'rowStart', 'rowEnd', 'colStart', and 'colEnd' keep track of the current boundaries of the matrix that need to be filled. The 'num' variable keeps track of the current number to be inserted, starting from 1 and incrementing with each iteration.
 */
+
+
+//alternative implementation:
+
+/*
+Approach: 4-pointer approach
+
+logic:
+Example 
+                               
+
+Input: matrix = [[1,2,3,4],
+
+		 i      j
+		 [5,6,7,8],
+
+                 i          j
+		 [9,10,11,12]]
+
+Output: [1,2,3,4,8,12,11,10,9,5,6,7]
+
+
+output: [1, 2, 3, 4, 8 ]
+
+- init empty output array to store numbers
+- init top pointer starting at 0
+- init bottom pointer starting at matrix.length - 1 (last item in matrix)
+- init left pointer starting at 0
+- init right starting at matrix[0].length - 1 (last item of first nested array)
+- while top & bottom pointers / left & right pointers have not crossed, traverse matrix
+- - traverse top row from left to right one item at a time (i++)
+- - - push each value from top row to output array
+- - increment top++
+- - traverse right column top to bottom one item at a time (i++)
+- - - push each value from right column to output array
+- - decrement right--
+- - if top <= bottom, traverse bottom row from right to left (i--)
+- - -  push each item from bottom row to output array
+- - decrement bottom--
+- - if left is less than or equal to right, traverse left column from bottom to top (i--)
+- - - push each item in left column to output array
+- - increment left++
+- after loop finishes, returning output array
+
+Time complexity: O(n x m) / linear (n = # of rows in matrix, and m = # of columns in matrix)
+Space complexity: O(n) / linear (n = # of items in output array)
+*/
+
+/**
+ * @param {number[][]} matrix
+ * @return {number[]}
+ */
+var spiralOrder = function(matrix) {
+    let output = [];
+    let top = 0;
+    let bottom = matrix.length - 1;
+    let left = 0;
+    let right = matrix[0].length - 1;
+    
+    while (top <= bottom && left <= right) {
+        //traverse top row
+        for (let i = left; i <= right; i++) {
+            output.push(matrix[top][i]);
+        }
+        
+        top++;
+        //traverse right column
+        for (let i = top; i <= bottom; i++) {
+            output.push(matrix[i][right]);
+        }
+        
+        right--;
+        
+        //trabverse bottom row
+        if (top <= bottom) {
+            for (let i = right; i >= left; i--) {
+                output.push(matrix[bottom][i]);
+            }
+            
+            bottom--; 
+        }
+        
+        //traverse left column
+        if (left <= right) {
+            for (let i = bottom; i >= top; i--) {
+                output.push(matrix[i][left]);
+            }
+            left++;
+        };
+    };
+    
+    return output;
+};
