@@ -1,0 +1,191 @@
+String Notes
+- a string is an array of unicode characters
+- you can perform almost all operations used in an array
+- but there are some differences:
+
+Compare Function (Can we use "==" to compare two strings?):
+- if the language supports operator overloading (like C++), the answer is yes
+- if the language does not support operator overloading (like Java), we may not use "==" to compare two strings, as it actually compares whether these two are the same object
+
+C++ Example:
+
+#include <iostream>
+
+int main() {
+    string s1 = "Hello World";
+    cout << "s1 is \"Hello World\"" << endl;
+    string s2 = s1;
+    cout << "s2 is initialized by s1" << endl;
+    string s3(s1);
+    cout << "s3 is initialized by s1" << endl;
+    // compare by '=='
+    cout << "Compared by '==':" << endl;
+    cout << "s1 and \"Hello World\": " << (s1 == "Hello World") << endl;
+    cout << "s1 and s2: " << (s1 == s2) << endl;
+    cout << "s1 and s3: " << (s1 == s3) << endl;
+    // compare by 'compare'
+    cout << "Compared by 'compare':" << endl;
+    cout << "s1 and \"Hello World\": " << !s1.compare("Hello World") << endl;
+    cout << "s1 and s2: " << !s1.compare(s2) << endl;
+    cout << "s1 and s3: " << !s1.compare(s3) << endl;
+}
+
+returns:
+Finished in 0 ms
+s1 is "Hello World"
+s2 is initialized by s1
+s3 is initialized by s1
+Compared by '==':
+s1 and "Hello World": 1
+s1 and s2: 1
+s1 and s3: 1
+Compared by 'compare':
+s1 and "Hello World": 1
+s1 and s2: 1
+s1 and s3: 1
+
+
+
+Java Example:
+
+// "static void main" must be defined in a public class.
+public class Main {
+    public static void main(String[] args) {
+        // initialize
+        String s1 = "Hello World";
+        System.out.println("s1 is \"" + s1 + "\"");
+        String s2 = s1;
+        System.out.println("s2 is another reference to s1.");
+        String s3 = new String(s1);
+        System.out.println("s3 is a copy of s1.");
+        // compare using '=='
+        System.out.println("Compared by '==':");
+        // true since string is immutable and s1 is binded to "Hello World"
+        System.out.println("s1 and \"Hello World\": " + (s1 == "Hello World"));
+        // true since s1 and s2 is the reference of the same object
+        System.out.println("s1 and s2: " + (s1 == s2));
+        // false since s3 is refered to another new object
+        System.out.println("s1 and s3: " + (s1 == s3));
+        // compare using 'equals'
+        System.out.println("Compared by 'equals':");
+        System.out.println("s1 and \"Hello World\": " + s1.equals("Hello World"));
+        System.out.println("s1 and s2: " + s1.equals(s2));
+        System.out.println("s1 and s3: " + s1.equals(s3));
+        // compare using 'compareTo'
+        System.out.println("Compared by 'compareTo':");
+        System.out.println("s1 and \"Hello World\": " + (s1.compareTo("Hello World") == 0));
+        System.out.println("s1 and s2: " + (s1.compareTo(s2) == 0));
+        System.out.println("s1 and s3: " + (s1.compareTo(s3) == 0));
+    }
+}
+
+
+returns:
+
+Finished in 0 ms
+s1 is "Hello World"
+s2 is initialized by s1
+s3 is initialized by s1
+Compared by '==':
+s1 and "Hello World": 1
+s1 and s2: 1
+s1 and s3: 1
+Compared by 'compare':
+s1 and "Hello World": 1
+s1 and s2: 1
+s1 and s3: 1
+
+
+JavaScript example:
+
+let s1 = "Hello World";
+console.log("s1 is \"" + s1 + "\"");
+let s2 = s1;
+console.log("s2 is another reference to s1.");
+let s3 = s1.slice(); // Equivalent to new String(s1) in Java
+console.log("s3 is a copy of s1.");
+// compare using '===' (equivalent to '==' in C++)
+console.log("Compared by '===':");
+console.log("s1 and \"Hello World\": " + (s1 === "Hello World"));
+console.log("s1 and s2: " + (s1 === s2));
+console.log("s1 and s3: " + (s1 === s3));
+// compare using '===' and 'toString' method
+console.log("Compared by '===' and 'toString':");
+console.log("s1 and \"Hello World\": " + (s1 === "Hello World"));
+console.log("s1 and s2: " + (s1 === s2));
+console.log("s1 and s3: " + (s1 === s3.toString()));
+
+
+
+Python Example:
+
+s1 = "Hello World"
+print("s1 is \"" + s1 + "\"")
+s2 = s1
+print("s2 is another reference to s1.")
+s3 = s1[:]
+print("s3 is a copy of s1.")
+# compare using '==' (equivalent to 'equals' in Java)
+print("Compared by '==':")
+print("s1 and \"Hello World\":", s1 == "Hello World")
+print("s1 and s2:", s1 == s2)
+print("s1 and s3:", s1 == s3)
+
+
+
+
+Immutable or Mutable
+- immutable means that you can't change the content of the string once it's initialized
+- - in some languages like C++, strings are mutable, while in other languages like Java, strings are immutable
+- - you can determine whether the string in your favorite language is immutable or mutable by testing the modification operation
+
+C++ modification operation example:
+#include <iostream>
+
+int main() {
+    string s1 = "Hello World";
+    s1[5] = ',';
+    cout << s1 << endl;
+}
+
+returns:
+Finished in 0 ms
+Hello,World
+
+
+
+Java modification operation example:
+// "static void main" must be defined in a public class.
+public class Main {
+    public static void main(String[] args) {
+        String s1 = "Hello World";
+        s1[5] = ',';
+        System.out.println(s1);
+    }
+}
+
+
+returns:
+Finished in N/A
+Line 5: error: array required, but String found [in Main.java]
+        s1[5] = ',';
+          ^
+
+
+JavaScript example:
+let s1 = "Hello World";
+// Convert the string to an array to perform the modification
+let s1Array = s1.split('');
+s1Array[5] = ',';
+s1 = s1Array.join('');
+console.log(s1);
+
+
+
+Python Example:
+s1 = "Hello World"
+# Convert the string to a list to perform the modification
+s1_list = list(s1)
+s1_list[5] = ','
+s1 = ''.join(s1_list)
+print(s1)
