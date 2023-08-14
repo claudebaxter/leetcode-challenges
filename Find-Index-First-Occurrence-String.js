@@ -45,3 +45,51 @@ var strStr = function(haystack, needle) {
     }
     return -1;
 };
+
+/*
+logic:
+- init n counter for needle string starting at 0
+- traverse haystack start to end one item per iteration
+- - if haystack[i] = needle[n], increment n + 1
+- - else if n > 0, move i to = i - n and then reset n to = 0
+- - if n is the same as the length of the needle string, return index of needle (i - n + 1)
+- if loop ends without finding needle in haystack, return -1
+
+Time Complexity: O(n) / linear (n = # letters in haystack)
+Space Complexity: O(1) / constant
+
+Approach: 2 pointer approach
+
+*/
+
+/**
+ * @param {string} haystack
+ * @param {string} needle
+ * @return {number}
+ */
+var strStr = function(haystack, needle) {
+    let n = 0;
+    
+    for(let i = 0; i < haystack.length; i++){
+        if(haystack[i]===needle[n]) n++;
+        else {
+            if (n > 0) i = i - n;
+            n = 0;
+        }
+        if (n === needle.length) {
+            return i - n + 1;
+        }
+    }
+    return -1;
+};
+
+//"cheater version":
+
+/**
+ * @param {string} haystack
+ * @param {string} needle
+ * @return {number}
+ */
+var strStr = function(haystack, needle) {
+    return haystack.indexOf(needle); 
+};
